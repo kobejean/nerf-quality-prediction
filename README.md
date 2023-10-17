@@ -1,4 +1,4 @@
-# nerfstudio-method-template
+# nerf-quality-prediction
 Template repository for creating and registering methods in Nerfstudio.
 
 ## File Structure
@@ -22,7 +22,7 @@ Ensure that nerfstudio has been installed according to the [instructions](https:
 
 ```
 conda activate nerfstudio
-cd nerfstudio-method-template/
+cd nerf-quality-prediction/
 pip install -e .
 ns-install-cli
 ```

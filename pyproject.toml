@@ -1,13 +1,26 @@
 [project]
-name = "nerfstudio-method-template"
+name = "nqp"
 description = "Template repository for creating and registering new methods in nerfstudio."
 version = "0.1.0"
 
-dependencies = ["nerfstudio >= 0.3.0"] 
+dependencies = [
+    "nerfstudio@git+https://github.com/kobejean/nerfstudio",
+    "torchtyping==0.1.4",
+    "matplotlib==3.5.3",
+    "ipympl==0.9.3",
+    "kaleido==0.2.1",
+    "openexr @ git+https://github.com/jamesbowman/openexrpython@91ec8a81a0bad7b30170c66769464cc7ab44ce4b",  
+] 
 
 [tool.setuptools.packages.find]
-include = ["method_template*"]
+include = ["nqp*"]
 
-# register the entry point of your new method here:
 [project.entry-points.'nerfstudio.method_configs']
-method-template = 'method_template.template_config:method_template'
+nqp-nerfacto = 'nqp.configs.method_configs:nqp_nerfacto'
+nqp-instant_ngp = 'nqp.configs.method_configs:nqp_instant_ngp' 
+nqp-mipnerf = 'nqp.configs.method_configs:nqp_mipnerf' 
+nqp-vanilla_nerf = 'nqp.configs.method_configs:nqp_vanilla_nerf' 
+nqp-tensorf = 'nqp.configs.method_configs:nqp_tensorf' 
+
+[project.entry-points.'nerfstudio.dataparser_configs']
+nqp-data = 'nqp.configs.dataparser_configs:nqp_dataparser'

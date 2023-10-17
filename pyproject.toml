@@ -4,7 +4,7 @@ description = "Template repository for creating and registering new methods in n
 version = "0.1.0"
 
 dependencies = [
-    "nerfstudio@git+https://github.com/kobejean/nerfstudio",
+    "nerfstudio==0.3.4",
     "torchtyping==0.1.4",
     "matplotlib==3.5.3",
     "ipympl==0.9.3",

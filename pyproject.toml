@@ -21,6 +21,8 @@ nqp-instant_ngp = 'nqp.configs.method_configs:nqp_instant_ngp'
 nqp-mipnerf = 'nqp.configs.method_configs:nqp_mipnerf' 
 nqp-vanilla_nerf = 'nqp.configs.method_configs:nqp_vanilla_nerf' 
 nqp-tensorf = 'nqp.configs.method_configs:nqp_tensorf' 
+nqp-tensorf-half-res = 'nqp.configs.method_configs:nqp_tensorf_half_res' 
+nqp-tensorf-half-samp = 'nqp.configs.method_configs:nqp_tensorf_half_samp' 
 
 [project.entry-points.'nerfstudio.dataparser_configs']
 nqp-data = 'nqp.configs.dataparser_configs:nqp_dataparser'

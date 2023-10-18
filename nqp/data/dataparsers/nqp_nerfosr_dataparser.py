@@ -87,7 +87,8 @@ def get_camera_params(
         A tuple containing the intrinsic parameters (as a torch.Tensor of shape [N, 4, 4]),
         the camera-to-world matrices (as a torch.Tensor of shape [N, 4, 4]), and the number of cameras (N).
     """
-    split_dir = f"{scene_dir}/{split}"
+    #split_dir = f"{scene_dir}/{split}"
+    split_dir = f"{scene_dir}" # we don't have any test or validation data
 
     # camera parameters files
     intrinsics_files = _find_files(f"{split_dir}/intrinsics", exts=["*.txt"])
@@ -121,8 +122,8 @@ class NQPNeRFOSRDataParserConfig(DataParserConfig):
     """target class to instantiate"""
     data: Path = Path("data/NeRF-OSR/Data/")
     """Directory specifying location of data."""
-    scene: str = "stjacob"
-    """Which scene to load"""
+    # scene: str = "stjacob"
+    # """Which scene to load"""
     scene_scale: float = 1.0
     """How much to scale the region of interest by."""
     scale_factor: float = 1.0
@@ -154,15 +155,18 @@ class NQPNeRFOSRDataParser(DataParser):
 
     def _generate_dataparser_outputs(self, split="train"):
         data = self.config.data
-        scene = self.config.scene
+        # scene = self.config.scene
         split = "validation" if split == "val" else split
 
-        if scene == "trevi":
-            scene_dir = f"{data}/{scene}/final_clean"
-            split_dir = f"{data}/{scene}/final_clean/{split}"
-        else:
-            scene_dir = f"{data}/{scene}/final"
-            split_dir = f"{data}/{scene}/final/{split}"
+        # if scene == "trevi":
+        #     scene_dir = f"{data}/{scene}/final_clean"
+        #     split_dir = f"{data}/{scene}/final_clean/{split}"
+        # else:
+        #     scene_dir = f"{data}/{scene}/final"
+        #     split_dir = f"{data}/{scene}/final/{split}"
+
+        scene_dir = data
+        split_dir = data
 
         # get all split cam params
         intrinsics_train, camera_to_worlds_train, n_train = get_camera_params(scene_dir, "train")

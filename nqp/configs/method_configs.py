@@ -42,10 +42,9 @@ def setattr_if_exists(obj, attr_name, new_value):
     else:
         print("No attribute:", attr_name)
 
-def make_nqp_config(method, NQPModel):
+def make_nqp_config(method, nqp_method, NQPModel):
     # scene_scale = 1.34
     # near_plane, far_plane = 1/3, 7/3 * scene_scale
-    nqp_method = "nqp-"+method
     nqp_config = ns_method_configs[method]
     nqp_config.method_name= nqp_method
     nqp_config.project_name="nerf-quality-prediction"
@@ -70,27 +69,27 @@ def make_nqp_config(method, NQPModel):
     return nqp_config
 
 
-nqp_nerfacto_config = make_nqp_config("nerfacto", NQPNerfactoModel)
+nqp_nerfacto_config = make_nqp_config("nerfacto", "nqp-nerfacto", NQPNerfactoModel)
 nqp_nerfacto = MethodSpecification(
     config=nqp_nerfacto_config,
     description=ns_descriptions["nerfacto"],
 )
 
 
-nqp_instant_ngp_config = make_nqp_config("instant-ngp", NQPInstantNGPModel)
+nqp_instant_ngp_config = make_nqp_config("instant-ngp", "nqp-instant-ngp", NQPInstantNGPModel)
 nqp_instant_ngp = MethodSpecification(
     config=nqp_instant_ngp_config,
     description=ns_descriptions["instant-ngp"],
 )
 
-nqp_mipnerf_config = make_nqp_config("mipnerf", NQPMipNerfModel)
+nqp_mipnerf_config = make_nqp_config("mipnerf", "nqp-mipnerf", NQPMipNerfModel)
 nqp_mipnerf_config.steps_per_eval_all_images=1000000  # set to a very large model so we don't eval with all images
 nqp_mipnerf = MethodSpecification(
     config=nqp_mipnerf_config,
     description=ns_descriptions["mipnerf"],
 )
 
-nqp_vanilla_nerf_config = make_nqp_config("vanilla-nerf", NQPNeRFModel)
+nqp_vanilla_nerf_config = make_nqp_config("vanilla-nerf", "nqp-vanilla-nerf", NQPNeRFModel)
 nqp_vanilla_nerf_config.steps_per_eval_all_images=1000000  # set to a very large model so we don't eval with all images
 nqp_vanilla_nerf = MethodSpecification(
     config=nqp_vanilla_nerf_config,
@@ -99,13 +98,13 @@ nqp_vanilla_nerf = MethodSpecification(
 
 # TensoRF
 
-nqp_tensorf_config = make_nqp_config("tensorf", NQPTensoRFModel)
+nqp_tensorf_config = make_nqp_config("tensorf", "nqp-tensorf", NQPTensoRFModel)
 nqp_tensorf = MethodSpecification(
     config=nqp_tensorf_config,
     description=ns_descriptions["tensorf"],
 )
 
-nqp_tensorf_half_res_config = make_nqp_config("tensorf", NQPTensoRFModel)
+nqp_tensorf_half_res_config = make_nqp_config("tensorf", "nqp-tensorf-half-res", NQPTensoRFModel)
 nqp_tensorf_half_res_config.pipeline.model.final_resolution = 150 # default 300
 nqp_tensorf_half_res_config.pipeline.model.init_resolution = 64 # default 128
 nqp_tensorf_half_res = MethodSpecification(
@@ -113,7 +112,7 @@ nqp_tensorf_half_res = MethodSpecification(
     description=ns_descriptions["tensorf"],
 )
 
-nqp_tensorf_half_samp_config = make_nqp_config("tensorf", NQPTensoRFModel)
+nqp_tensorf_half_samp_config = make_nqp_config("tensorf", "nqp-tensorf-half-samp", NQPTensoRFModel)
 nqp_tensorf_half_samp_config.pipeline.model.num_samples = 25 # default 50
 nqp_tensorf_half_samp_config.pipeline.model.num_uniform_samples = 100 # default 200
 nqp_tensorf_half_samp = MethodSpecification(

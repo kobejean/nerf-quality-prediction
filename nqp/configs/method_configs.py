@@ -106,16 +106,16 @@ nqp_tensorf = MethodSpecification(
 )
 
 nqp_tensorf_half_res_config = make_nqp_config("tensorf", NQPTensoRFModel)
-nqp_tensorf_half_res_config.final_resolution = 150 # default 300
-nqp_tensorf_half_res_config.init_resolution = 64 # default 128
+nqp_tensorf_half_res_config.pipeline.model.final_resolution = 150 # default 300
+nqp_tensorf_half_res_config.pipeline.model.init_resolution = 64 # default 128
 nqp_tensorf_half_res = MethodSpecification(
     config=nqp_tensorf_half_res_config,
     description=ns_descriptions["tensorf"],
 )
 
 nqp_tensorf_half_samp_config = make_nqp_config("tensorf", NQPTensoRFModel)
-nqp_tensorf_half_samp_config.num_samples = 25 # default 50
-nqp_tensorf_half_samp_config.num_uniform_samples = 100 # default 200
+nqp_tensorf_half_samp_config.pipeline.model.num_samples = 25 # default 50
+nqp_tensorf_half_samp_config.pipeline.model.num_uniform_samples = 100 # default 200
 nqp_tensorf_half_samp = MethodSpecification(
     config=nqp_tensorf_half_samp_config,
     description=ns_descriptions["tensorf"],

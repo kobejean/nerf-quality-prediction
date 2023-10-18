@@ -15,6 +15,7 @@ from nerfstudio.plugins.types import MethodSpecification
 from nerfstudio.configs.method_configs import method_configs as ns_method_configs, descriptions as ns_descriptions
 
 from nqp.data.dataparsers.nqp_dataparser import NQPDataParserConfig
+from nqp.data.dataparsers.nqp_blender_dataparser import NQPBlenderDataParserConfig
 from nqp.pipelines.nqp_pipeline import NQPPipeline
 
 def hasattr_nested(obj, attribute_path):
@@ -50,7 +51,7 @@ def make_nqp_config(method, NQPModel):
     nqp_config.project_name="nerf-quality-prediction"
     # nqp_config.steps_per_eval_all_images=5000
     nqp_config.pipeline._target=NQPPipeline
-    nqp_config.pipeline.datamanager.dataparser=NQPDataParserConfig()
+    nqp_config.pipeline.datamanager.dataparser=NQPBlenderDataParserConfig()
     nqp_config.pipeline.model._target=NQPModel
 
     # # nqp_config.pipeline.model.enable_collider = False

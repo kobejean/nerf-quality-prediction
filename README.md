@@ -8,6 +8,7 @@ Ensure that nerfstudio has been installed according to the [instructions](https:
 conda activate nerfstudio
 cd nerf-quality-prediction/
 pip install -e .
+pip install -U pyopenssl cryptography
 ns-install-cli
 ```
 

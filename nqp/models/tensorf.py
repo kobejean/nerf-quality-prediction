@@ -153,3 +153,36 @@ class NQPTensoRFModel(TensoRFModel):
 
         outputs = {"rgb": rgb, "accumulation": accumulation, "depth": depth}
         return outputs
+    
+    def get_image_metrics_and_images(
+        self, outputs: Dict[str, torch.Tensor], batch: Dict[str, torch.Tensor]
+    ) -> Tuple[Dict[str, float], Dict[str, torch.Tensor]]:
+        image = batch["image"].to(outputs["rgb"].device)
+        image = self.renderer_rgb.blend_background(image)
+        rgb = outputs["rgb"]
+        acc = colormaps.apply_colormap(outputs["accumulation"])
+        assert self.config.collider_params is not None
+        depth = colormaps.apply_depth_colormap(
+            outputs["depth"],
+            accumulation=outputs["accumulation"],
+            near_plane=self.config.collider_params["near_plane"],
+            far_plane=self.config.collider_params["far_plane"],
+        )
+
+        combined_rgb = torch.cat([image, rgb], dim=1)
+
+        # Switch images from [H, W, C] to [1, C, H, W] for metrics computations
+        image_flat = torch.moveaxis(image, -1, 0)[None, ...]
+        rgb_flat = torch.moveaxis(rgb, -1, 0)[None, ...]
+
+        psnr = self.psnr(image_flat, rgb_flat)
+        ssim = cast(torch.Tensor, self.ssim(image_flat, rgb_flat))
+        lpips = self.lpips(image_flat, rgb_flat)
+
+        metrics_dict = {
+            "psnr": float(psnr.item()),
+            "ssim": float(ssim.item()),
+            "lpips": float(lpips.item()),
+        }
+        images_dict = {"img": combined_rgb, "rgb_gt": image, "rgb_pred": rgb, "accumulation": acc, "depth": depth}
+        return metrics_dict, images_dict

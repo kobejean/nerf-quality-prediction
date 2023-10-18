@@ -25,3 +25,4 @@ nqp-tensorf = 'nqp.configs.method_configs:nqp_tensorf'
 [project.entry-points.'nerfstudio.dataparser_configs']
 nqp-data = 'nqp.configs.dataparser_configs:nqp_dataparser'
 nqp-blender-data = 'nqp.configs.dataparser_configs:nqp_blender_dataparser'
+nqp-minimal-data = 'nqp.configs.dataparser_configs:nqp_minimal_dataparser'

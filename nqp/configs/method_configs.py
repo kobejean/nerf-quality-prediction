@@ -120,3 +120,10 @@ nqp_tensorf_half_samp = MethodSpecification(
     config=nqp_tensorf_half_samp_config,
     description=ns_descriptions["tensorf"] + " nqp-tensorf-half-samp",
 )
+
+nqp_tensorf_half_color_config = make_nqp_config("tensorf", "nqp-tensorf-half-color", NQPTensoRFModel)
+nqp_tensorf_half_color_config.pipeline.model.num_color_components = 27 # default 48
+nqp_tensorf_half_color = MethodSpecification(
+    config=nqp_tensorf_half_color_config,
+    description=ns_descriptions["tensorf"] + " nqp-tensorf-half-color",
+)

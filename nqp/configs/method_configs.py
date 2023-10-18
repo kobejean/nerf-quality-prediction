@@ -1,5 +1,6 @@
 from __future__ import annotations
-import math 
+import math
+import copy 
 # from nqp.models.depth_nerfacto import DepthNerfactoModelConfig
 # from nqp.models.generfacto import GenerfactoModelConfig
 from nqp.models.instant_ngp import NQPInstantNGPModel
@@ -45,7 +46,7 @@ def setattr_if_exists(obj, attr_name, new_value):
 def make_nqp_config(method, nqp_method, NQPModel):
     # scene_scale = 1.34
     # near_plane, far_plane = 1/3, 7/3 * scene_scale
-    nqp_config = ns_method_configs[method]
+    nqp_config = copy.deepcopy(ns_method_configs[method])
     nqp_config.method_name= nqp_method
     nqp_config.project_name="nerf-quality-prediction"
     # nqp_config.steps_per_eval_all_images=5000
@@ -101,7 +102,7 @@ nqp_vanilla_nerf = MethodSpecification(
 nqp_tensorf_config = make_nqp_config("tensorf", "nqp-tensorf", NQPTensoRFModel)
 nqp_tensorf = MethodSpecification(
     config=nqp_tensorf_config,
-    description=ns_descriptions["tensorf"],
+    description=ns_descriptions["tensorf"]+ " nqp-tensorf",
 )
 
 nqp_tensorf_half_res_config = make_nqp_config("tensorf", "nqp-tensorf-half-res", NQPTensoRFModel)
@@ -109,7 +110,7 @@ nqp_tensorf_half_res_config.pipeline.model.final_resolution = 150 # default 300
 nqp_tensorf_half_res_config.pipeline.model.init_resolution = 64 # default 128
 nqp_tensorf_half_res = MethodSpecification(
     config=nqp_tensorf_half_res_config,
-    description=ns_descriptions["tensorf"],
+    description=ns_descriptions["tensorf"]+ " nqp-tensorf-half-res",
 )
 
 nqp_tensorf_half_samp_config = make_nqp_config("tensorf", "nqp-tensorf-half-samp", NQPTensoRFModel)
@@ -117,5 +118,5 @@ nqp_tensorf_half_samp_config.pipeline.model.num_samples = 25 # default 50
 nqp_tensorf_half_samp_config.pipeline.model.num_uniform_samples = 100 # default 200
 nqp_tensorf_half_samp = MethodSpecification(
     config=nqp_tensorf_half_samp_config,
-    description=ns_descriptions["tensorf"],
+    description=ns_descriptions["tensorf"] + " nqp-tensorf-half-samp",
 )

@@ -82,14 +82,14 @@ class NQPTensoRFField(TensoRFField):
 
     #     self.field_output_rgb = RGBFieldHead(in_dim=self.mlp_head.get_out_dim(), activation=nn.Sigmoid())
 
-    # def get_density(self, ray_samples: RaySamples) -> Tensor:
-    #     positions = SceneBox.get_normalized_positions(ray_samples.frustums.get_positions(), self.aabb)
-    #     positions = positions * 2 - 1
-    #     density = self.density_encoding(positions)
-    #     density_enc = torch.sum(density, dim=-1)[:, :, None]
-    #     relu = torch.nn.ReLU()
-    #     density_enc = relu(density_enc)
-    #     return density_enc
+    def get_density(self, ray_samples: RaySamples) -> Tensor:
+        positions = SceneBox.get_normalized_positions(ray_samples.frustums.get_positions(), self.aabb)
+        positions = positions * 2 - 1
+        density_features = self.density_encoding(positions)
+        density_enc = torch.sum(density_features, dim=-1)[:, :, None]
+        relu = torch.nn.ReLU()
+        density_enc = relu(density_enc)
+        return density_enc, density_features
 
     def get_outputs(self, ray_samples: RaySamples, density_embedding: Optional[Tensor] = None) -> Tensor:
         d = ray_samples.frustums.directions
@@ -105,11 +105,12 @@ class NQPTensoRFField(TensoRFField):
         else:
             d_encoded = self.direction_encoding(d)
             rgb_features_encoded = self.feature_encoding(rgb_features)
+            all_features = torch.cat([rgb_features, d, rgb_features_encoded, d_encoded], dim=-1)
 
-            out = self.mlp_head(torch.cat([rgb_features, d, rgb_features_encoded, d_encoded], dim=-1))  # type: ignore
+            out = self.mlp_head(all_features)  # type: ignore
             rgb = self.field_output_rgb(out)
 
-        return rgb
+        return rgb, all_features
 
     def forward(
         self,
@@ -121,23 +122,28 @@ class NQPTensoRFField(TensoRFField):
         if compute_normals is True:
             raise ValueError("Surface normals are not currently supported with TensoRF")
         if mask is not None and bg_color is not None:
+            feature_dim = self.mlp_head.in_dim + self.density_encoding.get_out_dim()
             base_density = torch.zeros(ray_samples.shape)[:, :, None].to(mask.device)
             base_rgb = bg_color.repeat(ray_samples[:, :, None].shape)
+            base_features = torch.zeros((*ray_samples.shape, feature_dim)).to(mask.device)
             if mask.any():
                 input_rays = ray_samples[mask, :]
-                density = self.get_density(input_rays)
-                rgb = self.get_outputs(input_rays, None)
+                density, density_features = self.get_density(input_rays)
+                rgb, rgb_features = self.get_outputs(input_rays, None)
 
                 base_density[mask] = density
                 base_rgb[mask] = rgb
+                base_features[mask] = torch.cat([rgb_features, density_features], dim=-1)
 
                 base_density.requires_grad_()
                 base_rgb.requires_grad_()
-
+                
             density = base_density
             rgb = base_rgb
+            features = base_features
         else:
-            density = self.get_density(ray_samples)
-            rgb = self.get_outputs(ray_samples, None)
+            density, density_features = self.get_density(ray_samples)
+            rgb, rgb_features = self.get_outputs(ray_samples, None)
+            features = torch.cat([rgb_features, density_features], dim=-1)
 
-        return {FieldHeadNames.DENSITY: density, FieldHeadNames.RGB: rgb}
+        return {FieldHeadNames.DENSITY: density, FieldHeadNames.RGB: rgb, "features": features}

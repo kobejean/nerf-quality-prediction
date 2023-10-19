@@ -17,3 +17,7 @@ This repository creates a new Nerfstudio method named "nqp-{method_name}". To tr
 ```
 ns-train nqp-{method_name} --data [PATH]
 ```
+
+## Features Format
+
+TensoRF : ``

@@ -127,3 +127,10 @@ nqp_tensorf_half_color = MethodSpecification(
     config=nqp_tensorf_half_color_config,
     description=ns_descriptions["tensorf"] + " nqp-tensorf-half-color",
 )
+
+nqp_tensorf_half_den_config = make_nqp_config("tensorf", "nqp-tensorf-half-den", NQPTensoRFModel)
+nqp_tensorf_half_den_config.pipeline.model.num_den_components = 8 # default 16
+nqp_tensorf_half_den = MethodSpecification(
+    config=nqp_tensorf_half_den_config,
+    description=ns_descriptions["tensorf"] + " nqp-tensorf-half-den",
+)

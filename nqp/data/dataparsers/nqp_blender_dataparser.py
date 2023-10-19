@@ -64,10 +64,9 @@ class NQPBlenderDataParser(BlenderDataParser):
         self.alpha_color = config.alpha_color
 
     def _generate_dataparser_outputs(self, split="train"):
-        if split != "train":
-            # TODO: find a proper way to handle no evaluation set
-            print("WARNING: cannot use validation set currently, using train set for eval")
-            split = "train" # hack to support datasets with no test or validation
+        if split != "train" and split != "test":
+            print("WARNING: cannot use validation set currently, using tet set for eval")
+            split = "test" 
         if self.alpha_color is not None:
             alpha_color_tensor = get_color(self.alpha_color)
         else:

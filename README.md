@@ -57,3 +57,7 @@ pip install -e . //if it still doesn't work use this
 run_queue.bash : Has script to run the models
 eval.bash : Has script to eval the models (will create config file + render model images + evaluation metrics in json)
 nqp/configs/method_configs.py : contains all definitions of each method to run (this is where you will write the method and change the parameters) 
+
+## Features Format
+
+TensoRF : ``

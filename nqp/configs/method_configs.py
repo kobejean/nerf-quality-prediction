@@ -134,3 +134,27 @@ nqp_tensorf_half_den = MethodSpecification(
     config=nqp_tensorf_half_den_config,
     description=ns_descriptions["tensorf"] + " nqp-tensorf-half-den",
 )
+
+# Instant NGP 
+nqp_instant_ngp_half_grid_reso_config = make_nqp_config("instant-ngp", "nqp-instant-ngp-half-grid-reso", NQPInstantNGPModel)
+nqp_instant_ngp_half_grid_reso_config.pipeline.model.grid_resolution = 64 # default 128
+nqp_instant_ngp_half_grid_reso = MethodSpecification(
+    config=nqp_instant_ngp_half_grid_reso_config,
+    description=ns_descriptions["instant-ngp"] + " nqp-instant-ngp-half-grid-reso",
+)
+
+nqp_instant_ngp_half_hashmap_reso_config = make_nqp_config("instant-ngp", "nqp-instant-ngp-half-hashmap-reso", NQPInstantNGPModel)
+nqp_instant_ngp_half_hashmap_reso_config.pipeline.model.max_res = 1024 # default 1024
+nqp_instant_ngp_half_hashmap_reso = MethodSpecification(
+    config=nqp_instant_ngp_half_hashmap_reso_config ,
+    description=ns_descriptions["instant-ngp"] + " nqp-instant-ngp-half-hashmap-reso",
+)
+
+nqp_instant_ngp_half_hashmap_log_config = make_nqp_config("instant-ngp", "nqp-instant-ngp-half-hashmap-log", NQPInstantNGPModel)
+nqp_instant_ngp_half_hashmap_log_config.pipeline.model.log2_hashmap_size = 10 # default 1024
+nqp_instant_ngp_half_hashmap_log = MethodSpecification(
+    config=nqp_instant_ngp_half_hashmap_log_config ,
+    description=ns_descriptions["instant-ngp"] + " nqp-instant-ngp-half-hashmap-log",
+)
+
+

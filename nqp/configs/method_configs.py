@@ -159,11 +159,6 @@ nqp_instant_ngp_half_hashmap_log = MethodSpecification(
 
 #3/4
 
-
-
-
-
-
 nqp_instant_ngp_grid_levels3_config = make_nqp_config("instant-ngp", "nqp-instant-ngp-grid-levels3", NQPInstantNGPModel)
 nqp_instant_ngp_grid_levels3_config.pipeline.model.grid_levels = 3 # default 4
 nqp_instant_ngp_grid_levels3 = MethodSpecification(
@@ -183,4 +178,32 @@ nqp_instant_ngp_grid_levels4_config.pipeline.model.grid_levels = 4 # default 4
 nqp_instant_ngp_grid_levels4 = MethodSpecification(
     config=nqp_instant_ngp_grid_levels4_config ,
     description=ns_descriptions["instant-ngp"] + " nqp-instant-ngp-grid-levels4",
+)
+
+nqp_instant_ngp_grid_levels4_config = make_nqp_config("instant-ngp", "nqp-instant-ngp-grid-levels4", NQPInstantNGPModel)
+nqp_instant_ngp_grid_levels4_config.pipeline.model.grid_levels = 4 # default 4
+nqp_instant_ngp_grid_levels4 = MethodSpecification(
+    config=nqp_instant_ngp_grid_levels4_config ,
+    description=ns_descriptions["instant-ngp"] + " nqp-instant-ngp-grid-levels4",
+)
+
+nqp_instant_ngp_half_max_res_config = make_nqp_config("instant-ngp", "nqp-instant-ngp-half-max-res", NQPInstantNGPModel)
+nqp_instant_ngp_half_max_res_config.pipeline.model.half_max_res = 1024 # default 2048
+nqp_instant_ngp_half_max_res = MethodSpecification(
+    config=nqp_instant_ngp_half_max_res_config ,
+    description=ns_descriptions["instant-ngp"] + " nqp-instant-ngp-half-max-res",
+)
+
+nqp_instant_ngp_double_max_res_config = make_nqp_config("instant-ngp", "nqp-instant-ngp-double-max-res", NQPInstantNGPModel)
+nqp_instant_ngp_double_max_res_config.pipeline.model.double_max_res = 4096 # default 2048
+nqp_instant_ngp_double_max_res = MethodSpecification(
+    config=nqp_instant_ngp_double_max_res_config ,
+    description=ns_descriptions["instant-ngp"] + " nqp-instant-ngp-double-max-res",
+)
+
+nqp_instant_ngp_double_grid_res_config = make_nqp_config("instant-ngp", "nqp-instant-ngp-double-grid-res", NQPInstantNGPModel)
+nqp_instant_ngp_double_grid_res_config.pipeline.model.grid_resolution = 256 # default 128
+nqp_instant_ngp_double_grid_res = MethodSpecification(
+    config=nqp_instant_ngp_double_grid_res_config ,
+    description=ns_descriptions["instant-ngp"] + " nqp-instant-ngp-double-grid-res",
 )

@@ -21,4 +21,4 @@
 #bash eval.bash outputs/Ship/nqp-tensorf/2023-10-18_110605
 
 #new need to run eval on third results 
-bash eval.bash outputs/Drums/nqp-tensorf-third-res/2023-10-20_155742
+bash eval.bash /home/ccl/Code/nerf-quality-prediction/outputs/Ficus/nqp-tensorf/2023-10-18_095139

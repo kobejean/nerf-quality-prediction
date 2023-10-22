@@ -15,4 +15,4 @@
 # bash eval.bash outputs/Drums/nqp-instant-ngp-half-hashmap-reso/2023-10-20_154508
 # bash eval.bash outputs/Drums/nqp-instant-ngp-grid-levels3/2023-10-21_100849
 #bash eval.bash outputs/Drums/nqp-instant-ngp-grid-levels5/2023-10-22_100213
-bash eval.bash outputs/Drums/nqp-instant-ngp-grid-levels4/2023-10-22_112030
+bash eval.bash outputs/Drums/nqp-instant-ngp/2023-10-22_141021

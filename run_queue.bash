@@ -39,7 +39,6 @@
 #ns-train nqp-instant-ngp-half-hashmap-log --data "/home/ccl/Datasets/NeRF/NeRF-QA/Realistic Synthetic 360/Drums/" --viewer.quit-on-train-completion True nqp-blender-data 
 #ns-train nqp-instant-ngp-grid-levels5 --data "/home/ccl/Datasets/NeRF/NeRF-QA/Realistic Synthetic 360/Drums/" --viewer.quit-on-train-completion True nqp-blender-data
 #ns-train nqp-instant-ngp-grid-levels4 --data "/home/ccl/Datasets/NeRF/NeRF-QA/Realistic Synthetic 360/Drums/" --viewer.quit-on-train-completion True nqp-blender-data
-#ns-train nqp-instant-ngp-grid-levels3 --data "/home/ccl/Datasets/NeRF/NeRF-QA/Realistic Synthetic 360/Drums/" --viewer.quit-on-train-completion True nqp-blender-data
-#ns-train nqp-instant-ngp-half-max-res --data "/home/ccl/Datasets/NeRF/NeRF-QA/Realistic Synthetic 360/Drums/" --viewer.quit-on-train-completion True nqp-blender-data
-ns-train nqp-instant-ngp-double-max-res --data "/home/ccl/Datasets/NeRF/NeRF-QA/Realistic Synthetic 360/Drums/" --viewer.quit-on-train-completion True nqp-blender-data
 
+ns-train nqp-instant-ngp --data "/home/ccl/Datasets/NeRF/NeRF-QA/Realistic Synthetic 360/Drums/" --viewer.quit-on-train-completion True nqp-blender-data 
+#bash run_queue2.bash

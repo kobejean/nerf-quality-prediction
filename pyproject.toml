@@ -25,15 +25,26 @@ nqp-tensorf-half-res = 'nqp.configs.method_configs:nqp_tensorf_half_res'
 nqp-tensorf-half-samp = 'nqp.configs.method_configs:nqp_tensorf_half_samp' 
 nqp-tensorf-half-color = 'nqp.configs.method_configs:nqp_tensorf_half_color' 
 nqp_tensorf-half-den = 'nqp.configs.method_configs:nqp_tensorf_half_den' 
+<<<<<<< HEAD
+nqp-tensorf-third-res = 'nqp.configs.method_configs:nqp_tensorf_third_res' 
+nqp-tensorf-third-samp = 'nqp.configs.method_configs:nqp_tensorf_third_samp' 
+nqp-tensorf-third-color = 'nqp.configs.method_configs:nqp_tensorf_third_color' 
+nqp_tensorf-third-den = 'nqp.configs.method_configs:nqp_tensorf_third_den' 
+nqp-tensorf-quarter-res = 'nqp.configs.method_configs:nqp_tensorf_quarter_res' 
+nqp-tensorf-quarter-samp = 'nqp.configs.method_configs:nqp_tensorf_quarter_samp' 
+nqp-tensorf-quarter-color = 'nqp.configs.method_configs:nqp_tensorf_quarter_color' 
+
 nqp-instant-ngp-half-grid-reso = 'nqp.configs.method_configs:nqp_instant_ngp_half_grid_reso'
 nqp-instant-ngp-half-hashmap-reso = 'nqp.configs.method_configs:nqp_instant_ngp_half_hashmap_reso'
 nqp-instant-ngp-half-hashmap-log = 'nqp.configs.method_configs:nqp_instant_ngp_half_hashmap_log'
 nqp-instant-ngp-grid-levels3 = 'nqp.configs.method_configs:nqp_instant_ngp_grid_levels3'
 nqp-instant-ngp-grid-levels5 = 'nqp.configs.method_configs:nqp_instant_ngp_grid_levels5'
 nqp-instant-ngp-grid-levels4 = 'nqp.configs.method_configs:nqp_instant_ngp_grid_levels4'
+
 nqp-instant-ngp-half-max-res = 'nqp.configs.method_configs:nqp_instant_ngp_half_max_res'
 nqp-instant-ngp-double-max-res = 'nqp.configs.method_configs:nqp_instant_ngp_double_max_res'
 nqp-instant-ngp-double-grid-res = 'nqp.configs.method_configs:nqp_instant_ngp_double_grid_res'
+
 
 [project.entry-points.'nerfstudio.dataparser_configs']
 nqp-data = 'nqp.configs.dataparser_configs:nqp_dataparser'

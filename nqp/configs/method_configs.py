@@ -157,4 +157,30 @@ nqp_instant_ngp_half_hashmap_log = MethodSpecification(
     description=ns_descriptions["instant-ngp"] + " nqp-instant-ngp-half-hashmap-log",
 )
 
+#3/4
 
+
+
+
+
+
+nqp_instant_ngp_grid_levels3_config = make_nqp_config("instant-ngp", "nqp-instant-ngp-grid-levels3", NQPInstantNGPModel)
+nqp_instant_ngp_grid_levels3_config.pipeline.model.grid_levels = 3 # default 4
+nqp_instant_ngp_grid_levels3 = MethodSpecification(
+    config=nqp_instant_ngp_grid_levels3_config ,
+    description=ns_descriptions["instant-ngp"] + " nqp-instant-ngp-grid-levels3",
+)
+
+nqp_instant_ngp_grid_levels5_config = make_nqp_config("instant-ngp", "nqp-instant-ngp-grid-levels5", NQPInstantNGPModel)
+nqp_instant_ngp_grid_levels5_config.pipeline.model.grid_levels = 5 # default 4
+nqp_instant_ngp_grid_levels5 = MethodSpecification(
+    config=nqp_instant_ngp_grid_levels5_config ,
+    description=ns_descriptions["instant-ngp"] + " nqp-instant-ngp-grid-levels5",
+)
+
+nqp_instant_ngp_grid_levels4_config = make_nqp_config("instant-ngp", "nqp-instant-ngp-grid-levels4", NQPInstantNGPModel)
+nqp_instant_ngp_grid_levels4_config.pipeline.model.grid_levels = 4 # default 4
+nqp_instant_ngp_grid_levels4 = MethodSpecification(
+    config=nqp_instant_ngp_grid_levels4_config ,
+    description=ns_descriptions["instant-ngp"] + " nqp-instant-ngp-grid-levels4",
+)

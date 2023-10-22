@@ -44,7 +44,6 @@ from nerfstudio.utils import colormaps, colors, misc
 from nerfstudio.cameras.camera_optimizers import CameraOptimizer, CameraOptimizerConfig
 
 from nqp.fields.tensorf_field import NQPTensoRFField
-from nqp.model_components.renderers import FeaturesRenderer
 
 class NQPTensoRFModel(TensoRFModel):
 
@@ -106,7 +105,6 @@ class NQPTensoRFModel(TensoRFModel):
         self.renderer_rgb = RGBRenderer(background_color=colors.WHITE)
         self.renderer_accumulation = AccumulationRenderer()
         self.renderer_depth = DepthRenderer()
-        self.renderer_features = FeaturesRenderer()
 
         # losses
         self.rgb_loss = MSELoss()
@@ -127,7 +125,7 @@ class NQPTensoRFModel(TensoRFModel):
     def get_outputs(self, ray_bundle: RayBundle):
         # uniform sampling
         ray_samples_uniform = self.sampler_uniform(ray_bundle)
-        dens, _ = self.field.get_density(ray_samples_uniform)
+        dens = self.field.get_density(ray_samples_uniform)
         weights = ray_samples_uniform.get_weights(dens)
         coarse_accumulation = self.renderer_accumulation(weights)
         acc_mask = torch.where(coarse_accumulation < 0.0001, False, True).reshape(-1)
@@ -154,14 +152,6 @@ class NQPTensoRFModel(TensoRFModel):
         accumulation = torch.clamp(accumulation, min=0)
 
         outputs = {"rgb": rgb, "accumulation": accumulation, "depth": depth}
-        
-        if not self.training:
-            features = self.renderer_features(
-                features=field_outputs_fine["features"],
-                weights=weights_fine,
-            )
-            outputs["features"] = features
-        
         return outputs
     
     def get_image_metrics_and_images(
@@ -179,16 +169,7 @@ class NQPTensoRFModel(TensoRFModel):
             far_plane=self.config.collider_params["far_plane"],
         )
 
-
         combined_rgb = torch.cat([image, rgb], dim=1)
-
-        # Switch images from [H, W, C] to [1, C, H, W] for metrics computations
-        image_flat = torch.moveaxis(image, -1, 0)[None, ...]
-        rgb_flat = torch.moveaxis(rgb, -1, 0)[None, ...]
-
-        psnr = self.psnr(image_flat, rgb_flat)
-        ssim = cast(torch.Tensor, self.ssim(image_flat, rgb_flat))
-        lpips = self.lpips(image_flat, rgb_flat)
 
         metrics_dict = {
             "psnr": float(psnr.item()),
@@ -196,8 +177,4 @@ class NQPTensoRFModel(TensoRFModel):
             "lpips": float(lpips.item()),
         }
         images_dict = {"img": combined_rgb, "rgb_gt": image, "rgb_pred": rgb, "accumulation": acc, "depth": depth}
-        
-        if not self.training:
-            images_dict["features"] = outputs["features"]
-
         return metrics_dict, images_dict

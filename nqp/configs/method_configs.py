@@ -134,3 +134,72 @@ nqp_tensorf_half_den = MethodSpecification(
     config=nqp_tensorf_half_den_config,
     description=ns_descriptions["tensorf"] + " nqp-tensorf-half-den",
 )
+
+nqp_tensorf_half_rgb_config = make_nqp_config("tensorf", "nqp-tensorf-half-den", NQPTensoRFModel)
+nqp_tensorf_half_rgb_config.pipeline.model.num_den_components = 8 # default 16
+nqp_tensorf_half_den = MethodSpecification(
+    config=nqp_tensorf_half_den_config,
+    description=ns_descriptions["tensorf"] + " nqp-tensorf-half-den",
+)
+
+
+
+
+
+#3/4
+nqp_tensorf_third_res_config = make_nqp_config("tensorf", "nqp-tensorf-third-res", NQPTensoRFModel)
+nqp_tensorf_third_res_config.pipeline.model.final_resolution = 225 # default 300
+nqp_tensorf_third_res_config.pipeline.model.init_resolution = 96 # default 128
+nqp_tensorf_third_res = MethodSpecification(
+    config=nqp_tensorf_third_res_config,
+    description=ns_descriptions["tensorf"]+ " nqp-tensorf-third-res",
+)
+
+nqp_tensorf_third_samp_config = make_nqp_config("tensorf", "nqp-tensorf-third-samp", NQPTensoRFModel)
+nqp_tensorf_third_samp_config.pipeline.model.num_samples = 38 # default 50
+nqp_tensorf_third_samp_config.pipeline.model.num_uniform_samples = 150 # default 200
+nqp_tensorf_third_samp = MethodSpecification(
+    config=nqp_tensorf_third_samp_config,
+    description=ns_descriptions["tensorf"] + " nqp-tensorf-third-samp",
+)
+
+nqp_tensorf_third_color_config = make_nqp_config("tensorf", "nqp-tensorf-third-color", NQPTensoRFModel)
+nqp_tensorf_third_color_config.pipeline.model.num_color_components = 16 # default 48
+nqp_tensorf_third_color = MethodSpecification(
+    config=nqp_tensorf_third_color_config,
+    description=ns_descriptions["tensorf"] + " nqp-tensorf-third-color",
+)
+
+nqp_tensorf_third_den_config = make_nqp_config("tensorf", "nqp-tensorf-third-den", NQPTensoRFModel)
+nqp_tensorf_third_den_config.pipeline.model.num_den_components = 12 # default 16
+nqp_tensorf_third_den = MethodSpecification(
+    config=nqp_tensorf_third_den_config,
+    description=ns_descriptions["tensorf"] + " nqp-tensorf-third-den",
+)
+
+
+#1\4
+nqp_tensorf_quarter_res_config = make_nqp_config("tensorf", "nqp-tensorf-quarter-res", NQPTensoRFModel)
+nqp_tensorf_quarter_res_config.pipeline.model.final_resolution = 75 # default 300
+nqp_tensorf_quarter_res_config.pipeline.model.init_resolution = 32 # default 128
+nqp_tensorf_quarter_res = MethodSpecification(
+    config=nqp_tensorf_quarter_res_config,
+    description=ns_descriptions["tensorf"]+ " nqp-quarter-quarter-res",
+)
+
+nqp_tensorf_quarter_samp_config = make_nqp_config("tensorf", "nqp-tensorf-quarter-samp", NQPTensoRFModel)
+nqp_tensorf_quarter_samp_config.pipeline.model.num_samples = 12.5 # default 50
+nqp_tensorf_quarter_samp_config.pipeline.model.num_uniform_samples = 50 # default 200
+nqp_tensorf_quarter_samp = MethodSpecification(
+    config=nqp_tensorf_quarter_samp_config,
+    description=ns_descriptions["tensorf"] + " nqp-tensorf-quarter-samp",
+)
+
+nqp_tensorf_quarter_color_config = make_nqp_config("tensorf", "nqp-tensorf-quarter-color", NQPTensoRFModel)
+nqp_tensorf_quarter_color_config.pipeline.model.num_color_components = 9 # default 48
+nqp_tensorf_quarter_color = MethodSpecification(
+    config=nqp_tensorf_quarter_color_config,
+    description=ns_descriptions["tensorf"] + " nqp-tensorf-quarter-color",
+)
+
+

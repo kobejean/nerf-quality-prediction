@@ -155,13 +155,16 @@ class NQPPipeline(VanillaPipeline):
                 progress.advance(task)
         # average the metrics list
         metrics_dict = {}
+        metrics_dict["individual"] = {}
         for key in metrics_dict_list[0].keys():
             if get_std:
+                metric_list = [metrics_dict[key] for metrics_dict in metrics_dict_list]
                 key_std, key_mean = torch.std_mean(
-                    torch.tensor([metrics_dict[key] for metrics_dict in metrics_dict_list])
+                    torch.tensor(metric_list)
                 )
                 metrics_dict[key] = float(key_mean)
                 metrics_dict[f"{key}_std"] = float(key_std)
+                metrics_dict["individual"][key] = metric_list
             else:
                 metrics_dict[key] = float(
                     torch.mean(torch.tensor([metrics_dict[key] for metrics_dict in metrics_dict_list]))

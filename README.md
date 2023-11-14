@@ -26,7 +26,7 @@ ns-train nqp-tensorf-half-res --data [PATH] --viewer.quit-on-train-completion Tr
 ns-eval --load-config "DATA_PATH/config.yml" --render-output-path "DATA_PATH/renders" --output-path "DATA_PATH/results.json"
 ```
 ## Creating new method and changing parameters 
-1. Write new method into method_configs. Follow the exact same format as the rest just change the method name and parameters
+1. Write new method into `nqp/configs/method_configs.py`. Follow the exact same format as the rest just change the method name and parameters
   
 2. Choose which parameters to change e.g these are the default values you can lower them if you want 
 Final_res: 300 //change size and quality
@@ -47,9 +47,9 @@ nqp-tensorf-half-res = 'nqp.configs.method_configs:nqp-tensorf-half-res'
 
 5.Save that file and run the commands in the bash terminal these commands:
 ```
-ns-train --help  //use this to check if your method has been added to the list, if it is not run the commands below 
-ns-install-cli   //to add your new method to configs 
 pip install -e . //if it still doesn't work use this
+ns-install-cli   //to add your new method to configs 
+ns-train --help  //use this to check if your method has been added to the list, if it is not run the commands below 
 ```
 6.Now you can run the new method using the command stated above
 

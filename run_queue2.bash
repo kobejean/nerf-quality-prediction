@@ -19,18 +19,44 @@
 #bash eval.bash outputs/Ficus/nqp-tensorf/2023-10-18_095139
 #bash eval.bash outputs/Lego/nqp-tensorf/2023-10-18_102641
 #bash eval.bash outputs/Ship/nqp-tensorf/2023-10-18_110605
+#bash eval.bash outputs/Drums/nqp-instant-ngp-double-max-res/2023-10-22_202755
 
-<<<<<<< HEAD
-# bash eval.bash outputs/Drums/nqp-instant-ngp-half-grid-reso/2023-10-20_152724
-# bash eval.bash outputs/Drums/nqp-instant-ngp-half-hashmap-reso/2023-10-20_154508
-# bash eval.bash outputs/Drums/nqp-instant-ngp-grid-levels3/2023-10-21_100849
-#bash eval.bash outputs/Drums/nqp-instant-ngp-grid-levels5/2023-10-22_100213
-#bash eval.bash outputs/Drums/nqp-instant-ngp-half-hashmap-log/2023-10-20_165504
-bash eval.bash outputs/Drums/nqp-instant-ngp-half-grid-reso/2023-10-20_152724
-bash eval.bash outputs/Drums/nqp-instant-ngp-half-hashmap-reso/2023-10-20_154508
-bash eval.bash outputs/Drums/nqp-instant-ngp-grid-levels3/2023-10-22_143841
-#bash eval.bash outputs/Drums/nqp-instant-ngp-half-max-res/2023-10-22_161707
-=======
+#bash eval.bash outputs/Drums/nqp-instant-ngp-double-max-res/2023-10-22_170921 
+
 #new need to run eval on third results 
-bash eval.bash /home/ccl/Code/nerf-quality-prediction/outputs/Ficus/nqp-tensorf/2023-10-18_095139
->>>>>>> d1b34f7618db621bd6503359b27a7cd21df1859d
+#bash eval.bash outputs/Drums/nqp-instant-ngp/2023-10-22_141021
+#eval double-grid double-max // half-grid  half-max 
+
+#bash eval.bash outputs/Drums/nqp-instant-ngp-half-max-res/2023-10-22_200259
+#bash eval.bash outputs/Drums/nqp-instant-ngp-half-grid-reso/2023-10-20_152724
+#bash eval.bash outputs/Drums/nqp-instant-ngp-double-max-res/2023-10-22_210912
+#bash eval.bash outputs/Drums/nqp-instant-ngp-half-grid-reso/2023-10-20_152724
+#bash eval.bash outputs/Drums/nqp-instant-ngp-synthetic/2023-10-27_114117
+#bash eval.bash outputs/Drums/nqp-instant-ngp/2023-10-22_141021
+
+#bash eval.bash outputs/Drums/nqp-instant-ngp-synthetic/2023-10-24_110819
+#bash eval.bash outputs/Drums/nqp-instant-ngp-synthetic-hashmap-log-14/2023-10-24_125603
+#bash eval.bash outputs/Drums/nqp-instant-ngp-synthetic-hashmap-log-15/2023-10-27_120305
+#bash eval.bash outputs/Drums/nqp-instant-ngp-synthetic-hashmap-log-16/2023-10-27_121350
+#bash eval.bash outputs/Drums/nqp-instant-ngp-synthetic-hashmap-log-17/2023-10-27_122447
+#bash eval.bash outputs/Drums/nqp-instant-ngp-synthetic-hashmap-log-18/2023-10-27_123547
+#bash eval.bash outputs/Drums/nqp-instant-ngp-synthetic-hashmap-log-20/2023-10-27_124701
+#bash eval.bash outputs/Drums/nqp-instant-ngp-synthetic-hashmap-log-21/2023-10-27_140153
+#bash eval.bash outputs/Drums/nqp-instant-ngp-synthetic-hashmap-log-1/2023-10-27_231524
+#bash eval.bash outputs/Drums/nqp-instant-ngp-synthetic-hashmap-log-2/2023-10-27_235320
+#bash eval.bash outputs/Drums/nqp-instant-ngp-synthetic-hashmap-log-4/2023-10-28_000832
+#bash eval.bash outputs/Drums/nqp-instant-ngp-synthetic-hashmap-log-6/2023-10-28_002312x
+
+#bash eval.bash outputs/Drums/nqp-instant-ngp-grid-levels-3/2023-10-28_194428
+#bash eval.bash outputs/Drums/nqp-instant-ngp-grid-levels-6/2023-10-28_195616
+#bash eval.bash outputs/Drums/nqp-instant-ngp-grid-levels-8/2023-10-28_200806
+#bash eval.bash outputs/Drums/nqp-instant-ngp-grid-levels-10/2023-10-28_202005
+#bash eval.bash outputs/Drums/nqp-instant-ngp-grid-levels-12/2023-10-28_203211
+
+#bash eval.bash outputs/M60/nqp-instant-ngp/2023-10-29_140737
+#bash eval.bash outputs/M60/nqp-instant-ngp-hashmap-log-16/2023-10-30_115657
+#bash eval.bash outputs/M60/nqp-instant-ngp-hashmap-log-21/2023-10-30_113214
+#bash eval.bash outputs/M60/nqp-instant-ngp-hashmap-log-10/2023-10-30_121651
+#bash eval.bash outputs/M60/nqp-instant-ngp-grid-resolution-32/2023-11-11_121509
+#bash eval.bash outputs/M60/nqp-instant-ngp-grid-resolution-64/2023-11-11_123148
+bash eval.bash outputs/M60/nqp-instant-ngp-grid-resolution-256/2023-11-12_160458

@@ -20,6 +20,9 @@ import torch.distributed as dist
 from torch.cuda.amp.grad_scaler import GradScaler
 from torch.nn.parallel import DistributedDataParallel as DDP
 
+import torch
+
+
 from nqp.utils.utils import (
     load_config,
     save_as_image, read_depth_map, compute_errors,
@@ -118,6 +121,7 @@ class NQPPipeline(VanillaPipeline):
                 # time this the following line
                 inner_start = time()
                 height, width = camera_ray_bundle.shape
+                #print((height, width), batch["image"].shape)
                 num_rays = height * width
                 outputs = self.model.get_outputs_for_camera_ray_bundle(camera_ray_bundle)
                 metrics_dict, images_dict = self.model.get_image_metrics_and_images(outputs, batch)
@@ -141,6 +145,12 @@ class NQPPipeline(VanillaPipeline):
                 fps_str = "fps"
                 assert fps_str not in metrics_dict
                 metrics_dict[fps_str] = metrics_dict["num_rays_per_sec"] / (height * width)
+                metrics_dict_list.append(metrics_dict)
+                total_params_str = "total_params"
+                assert total_params_str not in metrics_dict
+                total_params = sum(p.numel() for p in self.model.parameters() if p.requires_grad)
+                metrics_dict[total_params_str] = float(total_params)
+                #print(total_params)
                 metrics_dict_list.append(metrics_dict)
                 progress.advance(task)
         # average the metrics list

@@ -75,20 +75,19 @@ def _parse_osm_txt(filename: str):
 
 
 def get_camera_params(
-    scene_dir: str, split: Literal["train", "validation", "test"]
+    split_dir: str, split: Literal["train", "validation", "test"]
 ) -> Tuple[torch.Tensor, torch.Tensor, int]:
     """Load camera intrinsic and extrinsic parameters for a given scene split.
 
     Args"
-      scene_dir : The directory containing the scene data.
+      split_dir : The directory containing the scene data.
       split : The split for which to load the camera parameters.
 
     Returns
         A tuple containing the intrinsic parameters (as a torch.Tensor of shape [N, 4, 4]),
         the camera-to-world matrices (as a torch.Tensor of shape [N, 4, 4]), and the number of cameras (N).
     """
-    #split_dir = f"{scene_dir}/{split}"
-    split_dir = f"{scene_dir}" # we don't have any test or validation data
+    split_dir = f"{split_dir}/{split}"
 
     # camera parameters files
     intrinsics_files = _find_files(f"{split_dir}/intrinsics", exts=["*.txt"])
@@ -110,7 +109,6 @@ def get_camera_params(
 
     intrinsics = torch.from_numpy(np.stack(intrinsics).astype(np.float32))  # [N, 4, 4]
     camera_to_worlds = torch.from_numpy(np.stack(camera_to_worlds).astype(np.float32))  # [N, 4, 4]
-
     return intrinsics, camera_to_worlds, num_cams
 
 
@@ -155,33 +153,30 @@ class NQPNeRFOSRDataParser(DataParser):
 
     def _generate_dataparser_outputs(self, split="train"):
         data = self.config.data
-        # scene = self.config.scene
-        split = "validation" if split == "val" else split
-
-        # if scene == "trevi":
-        #     scene_dir = f"{data}/{scene}/final_clean"
-        #     split_dir = f"{data}/{scene}/final_clean/{split}"
-        # else:
-        #     scene_dir = f"{data}/{scene}/final"
-        #     split_dir = f"{data}/{scene}/final/{split}"
+        split = "test" if split == "val" or split == "validation" or split == "test" else split
 
         scene_dir = data
-        split_dir = data
+        split_dir = f"{data}/{split}"
 
         # get all split cam params
         intrinsics_train, camera_to_worlds_train, n_train = get_camera_params(scene_dir, "train")
-        intrinsics_val, camera_to_worlds_val, n_val = get_camera_params(scene_dir, "validation")
+        intrinsics_val, camera_to_worlds_val, n_val = get_camera_params(scene_dir, "test")
         intrinsics_test, camera_to_worlds_test, _ = get_camera_params(scene_dir, "test")
 
         # combine all cam params
         intrinsics = torch.cat([intrinsics_train, intrinsics_val, intrinsics_test], dim=0)
-        camera_to_worlds = torch.cat([camera_to_worlds_train, camera_to_worlds_val, camera_to_worlds_test], dim=0)
+        #camera_to_worlds = torch.cat([camera_to_worlds_train, camera_to_worlds_val, camera_to_worlds_test], dim=0)
 
-        camera_to_worlds, _ = camera_utils.auto_orient_and_center_poses(
-            camera_to_worlds,
+        _, transform = camera_utils.auto_orient_and_center_poses(
+            camera_to_worlds_train,
             method=self.config.orientation_method,
             center_method=self.config.center_method,
         )
+        camera_to_worlds_train = transform @ camera_to_worlds_train
+        camera_to_worlds_val = transform @ camera_to_worlds_val
+        camera_to_worlds_test = transform @ camera_to_worlds_test
+        camera_to_worlds = torch.cat([camera_to_worlds_train, camera_to_worlds_val, camera_to_worlds_test], dim=0)
+
 
         # Scale poses
         scale_factor = 1.0
@@ -208,6 +203,7 @@ class NQPNeRFOSRDataParser(DataParser):
             cy=intrinsics[:, 1, 2],
             camera_type=CameraType.PERSPECTIVE,
         )
+        print(cameras.height[0], cameras.width[0])
 
         # in x,y,z order
         # assumes that the scene is centered at the origin

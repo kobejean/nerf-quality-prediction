@@ -25,7 +25,7 @@ nqp-tensorf-half-res = 'nqp.configs.method_configs:nqp_tensorf_half_res'
 nqp-tensorf-half-samp = 'nqp.configs.method_configs:nqp_tensorf_half_samp' 
 nqp-tensorf-half-color = 'nqp.configs.method_configs:nqp_tensorf_half_color' 
 nqp_tensorf-half-den = 'nqp.configs.method_configs:nqp_tensorf_half_den' 
-<<<<<<< HEAD
+
 nqp-tensorf-third-res = 'nqp.configs.method_configs:nqp_tensorf_third_res' 
 nqp-tensorf-third-samp = 'nqp.configs.method_configs:nqp_tensorf_third_samp' 
 nqp-tensorf-third-color = 'nqp.configs.method_configs:nqp_tensorf_third_color' 
@@ -34,16 +34,50 @@ nqp-tensorf-quarter-res = 'nqp.configs.method_configs:nqp_tensorf_quarter_res'
 nqp-tensorf-quarter-samp = 'nqp.configs.method_configs:nqp_tensorf_quarter_samp' 
 nqp-tensorf-quarter-color = 'nqp.configs.method_configs:nqp_tensorf_quarter_color' 
 
-nqp-instant-ngp-half-grid-reso = 'nqp.configs.method_configs:nqp_instant_ngp_half_grid_reso'
+
 nqp-instant-ngp-half-hashmap-reso = 'nqp.configs.method_configs:nqp_instant_ngp_half_hashmap_reso'
 nqp-instant-ngp-half-hashmap-log = 'nqp.configs.method_configs:nqp_instant_ngp_half_hashmap_log'
 nqp-instant-ngp-grid-levels3 = 'nqp.configs.method_configs:nqp_instant_ngp_grid_levels3'
 nqp-instant-ngp-grid-levels5 = 'nqp.configs.method_configs:nqp_instant_ngp_grid_levels5'
 nqp-instant-ngp-grid-levels4 = 'nqp.configs.method_configs:nqp_instant_ngp_grid_levels4'
+nqp-instant-ngp-half-grid-reso = 'nqp.configs.method_configs:nqp_instant_ngp_half_grid_reso'
 
 nqp-instant-ngp-half-max-res = 'nqp.configs.method_configs:nqp_instant_ngp_half_max_res'
 nqp-instant-ngp-double-max-res = 'nqp.configs.method_configs:nqp_instant_ngp_double_max_res'
-nqp-instant-ngp-double-grid-res = 'nqp.configs.method_configs:nqp_instant_ngp_double_grid_res'
+nqp-instant-ngp-default-max-res = 'nqp.configs.method_configs:nqp_instant_ngp_default_max_res'
+nqp-instant-ngp-synthetic = 'nqp.configs.method_configs:nqp_instant_ngp_synthetic'
+
+nqp-instant-ngp-synthetic-half-grid-res = 'nqp.configs.method_configs:nqp_instant_ngp_synthetic_half_grid_res'
+
+nqp-instant-ngp-synthetic-hashmap-log-1 = 'nqp.configs.method_configs:nqp_instant_ngp_synthetic_hashmap_log_1'
+nqp-instant-ngp-synthetic-hashmap-log-2 = 'nqp.configs.method_configs:nqp_instant_ngp_synthetic_hashmap_log_2'
+nqp-instant-ngp-synthetic-hashmap-log-4 = 'nqp.configs.method_configs:nqp_instant_ngp_synthetic_hashmap_log_4'
+nqp-instant-ngp-synthetic-hashmap-log-6 = 'nqp.configs.method_configs:nqp_instant_ngp_synthetic_hashmap_log_6'
+
+nqp-instant-ngp-synthetic-hashmap-log-14 = 'nqp.configs.method_configs:nqp_instant_ngp_synthetic_hashmap_log_14'
+nqp-instant-ngp-synthetic-hashmap-log-15 = 'nqp.configs.method_configs:nqp_instant_ngp_synthetic_hashmap_log_15'
+nqp-instant-ngp-synthetic-hashmap-log-16 = 'nqp.configs.method_configs:nqp_instant_ngp_synthetic_hashmap_log_16'
+nqp-instant-ngp-synthetic-hashmap-log-17 = 'nqp.configs.method_configs:nqp_instant_ngp_synthetic_hashmap_log_17'
+nqp-instant-ngp-synthetic-hashmap-log-18 = 'nqp.configs.method_configs:nqp_instant_ngp_synthetic_hashmap_log_18'
+nqp-instant-ngp-synthetic-hashmap-log-20 = 'nqp.configs.method_configs:nqp_instant_ngp_synthetic_hashmap_log_20'
+nqp-instant-ngp-synthetic-hashmap-log-21 = 'nqp.configs.method_configs:nqp_instant_ngp_synthetic_hashmap_log_21'
+
+nqp-instant-ngp-grid-levels-3 = 'nqp.configs.method_configs:nqp_instant_ngp_grid_levels_3'
+nqp-instant-ngp-grid-levels-6 = 'nqp.configs.method_configs:nqp_instant_ngp_grid_levels_6'
+nqp-instant-ngp-grid-levels-8 = 'nqp.configs.method_configs:nqp_instant_ngp_grid_levels_8'
+nqp-instant-ngp-grid-levels-10 = 'nqp.configs.method_configs:nqp_instant_ngp_grid_levels_10'
+nqp-instant-ngp-grid-levels-12 = 'nqp.configs.method_configs:nqp_instant_ngp_grid_levels_12'
+
+
+nqp-instant-ngp-hashmap-log-10 = 'nqp.configs.method_configs:nqp_instant_ngp_hashmap_log_10'
+nqp-instant-ngp-hashmap-log-16 = 'nqp.configs.method_configs:nqp_instant_ngp_hashmap_log_16'
+nqp-instant-ngp-hashmap-log-21 = 'nqp.configs.method_configs:nqp_instant_ngp_hashmap_log_21'
+nqp-instant-ngp-hashmap-log-20 = 'nqp.configs.method_configs:nqp_instant_ngp_hashmap_log_20'
+nqp-instant-ngp-hashmap-log-12 = 'nqp.configs.method_configs:nqp_instant_ngp_hashmap_log_12'
+
+nqp-instant-ngp-grid-resolution-32 = 'nqp.configs.method_configs:nqp_instant_ngp_grid_resolution_32'
+nqp-instant-ngp-grid-resolution-64 = 'nqp.configs.method_configs:nqp_instant_ngp_grid_resolution_64'
+nqp-instant-ngp-grid-resolution-256 = 'nqp.configs.method_configs:nqp_instant_ngp_grid_resolution_256'
 
 
 [project.entry-points.'nerfstudio.dataparser_configs']
